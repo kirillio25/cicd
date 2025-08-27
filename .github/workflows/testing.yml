@@ -1,11 +1,12 @@
 name: Test React App
 on: push # Не автоматические, а при push
-jops:
-  runs-on: ubuntu-lastest
-  steps:
-    - name: Get repositore code
-      uses: actions/checkout@v3 #https://github.com/marketplace/actions/checkout
-    - name: Install dependecies
-      run: npm ci
-    - name: Test apllication
-      run: npm run test
+jobs:
+  test:
+    runs-on: ubuntu-lastest
+    steps:
+      - name: Get repositore code
+        uses: actions/checkout@v3 #https://github.com/marketplace/actions/checkout
+      - name: Install dependecies
+        run: npm ci
+      - name: Test apllication
+        run: npm run test
