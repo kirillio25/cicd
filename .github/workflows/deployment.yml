@@ -1,0 +1,35 @@
+name: Deploy React App
+on: push # Не автоматические, а при push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repositore code
+        uses: actions/checkout@v3 #https://github.com/marketplace/actions/checkout
+      - name: Install dependecies
+        run: npm ci
+      - name: Test apllication
+        run: npm run test
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repositore code
+        uses: actions/checkout@v3 #https://github.com/marketplace/actions/checkout
+      - name: Install dependecies
+        run: npm ci
+      - name: Lint apllication
+        run: npm run lint
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repositore code
+        uses: actions/checkout@v3 #https://github.com/marketplace/actions/checkout
+      - name: Install dependecies
+        run: npm ci
+      - name: Lint apllication
+        run: npm run build
+      - name: Deploy
+        run: echo Deploying...
+
+
+      
