@@ -1,0 +1,22 @@
+# зависимости
+/node_modules
+
+# Yarn PnP
+.pnp
+.pnp.js
+
+# тесты
+/coverage
+
+# production билд
+/build
+
+# env-файлы
+.env
+.env.local
+.env.*.local
+
+# разные IDE и системные файлы
+.DS_Store
+.idea
+.vscode
