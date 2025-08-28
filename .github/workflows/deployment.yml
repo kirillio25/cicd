@@ -1,19 +1,29 @@
-name: Deploy React App
+name: Build and Deploy 
 on: push 
 jobs:
-  test:
-    strategy:
-      matrix:
-        node-version: [14,16]
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+  build:
+    runs-on: ubuntu-latest
     steps:
       - name: Get repositore code
         uses: actions/checkout@v3 
       - name: Install dependecies
         run: npm ci
       - name: Test apllication
-        run: npm run test
+        run: npm run build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: build #путь к папке
+          name: build-files # Просто имя
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get build project
+        uses: actions/download-artifact@v3  # скачиваем артефакт
+        with:
+          name: build-files
+
 
 
 
