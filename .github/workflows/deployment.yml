@@ -1,29 +1,25 @@
-name: Build and Deploy
+name: Enviroment
 on: push
-
+env:
+  NODE_ENV: production
+  GH_SECRET: ${{ secrets.DEPLOY_SECRET }}
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Get repository code
-        uses: actions/checkout@v3
-      - name: Install dependencies
-        run: npm ci
-      - name: Build application
-        run: npm run build
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          path: build
-          name: build-files
-
+      - name: Print env Build
+        run: echo ...
+          echo "${{ env.NODE_ENV}}"
+          echo "${{ env.GH_SECRET}}"
   deploy:
-    needs: build
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: production-deploy
     steps:
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: build-files
-    
+      - name: Print Env Deploy
+        run : echo "..."
+          echo "${{ env.NODE_ENV}}"
+          echo "${{ env.GH_SECRET}}"
+        
+
 
